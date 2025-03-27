@@ -19,7 +19,7 @@ public class JokeService {
     public static final String JOKES_URL = "https://official-joke-api.appspot.com/random_joke ";
     public static final int DEFAULT_BATCH_SIZE = 10;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
     private final BatchUtil batchUtil;
 
     public List<Joke> retrieveJokes(Integer count) {
