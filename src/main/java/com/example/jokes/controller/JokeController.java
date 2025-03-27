@@ -4,6 +4,7 @@ import com.example.jokes.model.Joke;
 import com.example.jokes.service.JokeService;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -24,6 +25,7 @@ public class JokeController {
     @GetMapping("/jokes")
     public ResponseEntity<List<Joke>> getJoke(
             @RequestParam(defaultValue = "5")
+            @Min(value = 1, message = "You can't get negative number of jokes 🥲")
             @Max(value = 100, message = "You can't get more than 100 jokes at once")
             Integer count) {
         return ResponseEntity.ok(jokeService.retrieveJokes(count));
